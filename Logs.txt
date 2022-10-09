@@ -1,0 +1,134 @@
+Log 1: 21 Aug 2022
+    - Imma start with a similar game as the one from the Genetic algorithm project
+    - So the map gonna be a matrix of coordinates
+    UPDATE: Did a tutorial for pygame instead
+    NEXT: Finish the pygame turotial and start planning on what parameters to take in as the input layer
+
+Log 2: 22 Aug 2022
+    - Finished the pygame tutorial
+    NEXT: Start planning on the game interface and parameters
+
+Log 3: 25 Aug 2022
+    - Idea 1: Make the program to read the entire board
+        - So for 5x5 board the input layer will have to be 25 neurons
+        - Simple but it will get much more complicated when the board size increases
+        - Maybe can include an obstacles every time the bot get a point
+    - NEXT: Outline the genetic algorithm and see how to arrange thetas
+
+Log 4: 26 Aug 2022
+    - Gonna just create organims object which will have
+        - Forward propagation function
+        - Storage of all its weights in both matrix form and genome form (basically a long string)
+    - UPDATE: Have quite a hard time with planning for a flatten funciton for genome
+        - Not quite sure how to turn a flat genome list to thetas matrix
+    - NEXT: Look at how to turn genome into matrix for forward prop
+    UPDATE: Got it to work now first try!
+    NEXT: Look into how to tweak weights using mutation
+
+Log 5: 29 Aug 2022
+    - Rn have both weight and genome variable, think that might be a bit of a problem when doing mutation
+    - Act it wont b a problem it will just b inefficient
+    UPDATE: Fix it now, now the organism only contain genome and it will be shaped into weights for forward pass
+    NEXT: Work on Mutate function
+
+Log 6: 30 Aug 2022
+    - start on mutation
+    UPDATE: Finished mutation, felt like the program was much shorter than the first time
+    NEXT: Start on forward pass
+
+Log 7: 2 Sept 2022
+    - start on forward pass
+    UPDATE: Done with foward pass
+    NEXT: Start on planning for fitness function
+
+Log 8: 6 Sep 2022
+    - Start on map generation
+        - Rn just have simple square map with borders
+    - Will make robot read 8 surroinding tiles as input layer
+    UPDATE: Got up to the coordinate changing system when given output from NN. Also got input layer ready (9 neurons)
+    NEXT: Create def to check for collision
+
+Log 9: 7 Sep 2022
+    - Start on collision check
+    - Increased border to two tiles
+        - Top left loc is noe (2, 2)
+    UPDATE: Seems to work now, it seems like all the error come from copying ID, where
+        just using dna = genome doesn't generate a while new object but indead take the
+        same object with the same address. Tis why the coordinate always get moved by one mem
+        ber and the next member starts with it. Learned how to use copy.deepcopy() funcotion.
+        Damn didnt even kno this thing exist.
+    NEXT: Make a more understandable print outline on the run window
+    NEXT: Optimize the transform weight function (make it with the init so it doesn have to
+        be called every turn for forward pass)
+    NEXT: For check collision function, u can just use coordinate and map as input to check
+        whether that coordinate in the map is a 1 or not (instead of using the surrounding chunk)
+
+Log 10: 8 Sep 2022
+    - Start on optimizing transform weights function
+    UPDATE: Think it now gud
+    - Start on cillision check
+    UPDATE: Done, now it only take in coordinate and map and check if that coordinate is 0 or 1
+    - Start on making better map info
+    UPDATE: Think it looks oK
+    - Imma try to start on writting the GA
+    UPDATE: Got up to start og GA
+    NEXT: Work on GA
+
+Log 11: 9 Sep 2022
+    - Start and finished mating and generate new gen function
+    - Seems like the whole thing is working now but dont really know, what kind of info I need it
+        to split out
+    - Did a couple test and it seems that the bot is improving, max score from first to like 20th
+        gen is from -4 to 20
+    - But I'm not quite sure what 20 means cus I cant really c wot the bot doing
+    UPDATE: But noe work but the best in gen just move back and forth
+    NEXT: Find a way to counter this strat
+
+Log 12: 10 Sep 2022
+    - Think gonna add food into the game, where it will appear in random location
+    - Bot will recieve the distance and direction of food
+        - If bot get food -> increases its turns
+    UPDATE: Brain no work so just gonna do x andy distance for now
+    UPDATE: Have no idea what happened. Added in couple functions but no quite sure if it helped
+    UPDATE: Changed some fitness and it seems to change its behavior (see main lof for info)
+
+Log 13: 12 Sep 2022
+    - Donno wot to do with GA for the moment so imma switch to do interface with pygame
+    - Will prob do only blank screen for now
+    UPDATE: Got it to show screen
+    NEXT: Plan on what increment the bot will move in
+    NEXT: Plan on changing the input layer function so that it is easier to edit input layer
+
+Log 14: 15 Sep 2022
+    - Starting on drawing game window
+        - Will make the window 660 by 660 for now, each coordinate r 60x60 pixels
+    UPDATE: Got the bot to move around now, it easier than I thought. The key sensitivity is quite
+        high but that shouldn't be a problem when it got connected to the GA
+    NEXT: Make testing mechanism whether the bot it dead or not.
+
+Log 15: 18 Sep 2022
+    - Find some food png for the game but all looks shit
+    UPDATE: Got a manual robot brain function to work now
+    - Maybe next I gotta go clean up the NNGA function to make it easier to edit
+        - Or actually make an interface that connects the two programs tgt
+    IDEA[PENDING]: What if I just make the organism gets points by just getting the food and nothing
+        else
+    NEXT: Plan for a new way to create GA
+
+Log 16: 19 Sep 2022
+    - Imma start to look at what variables I can use in the simulation
+    UPDATE: Finish the new fitness and environmental rule now, but the thing still doesnt
+        works
+        - Tried to do simple fitness function, where when the bot get food it gets 1 and if
+            it dies it gwts -0.9
+        - Tried to start the game with random food loc but it seems like the part of the bot
+            that should have looked for the food doesnt seems to develope at all.
+    NEXT: Try to add in the amount of turns it stayed alive
+    UPDATE: Implemented the age fitness but the program just back to its moveing back and
+        forth strat. Seems like it is really easy to get the bot to stay alive but really
+        hard for it to use the food length coordinate to find food.
+    UPDATE: Made the food loc fixed again and the bot gets the food easily, but after the
+        second food is randomized, it just stop working
+    NEXT: Connect NNGA with pygame function
+    NEXT: Add a function that deduce the turn's score if the bot moved to its previous spot. 
+	Doesn't have to be a lot but just so that the one that moved to other spot is selected for
